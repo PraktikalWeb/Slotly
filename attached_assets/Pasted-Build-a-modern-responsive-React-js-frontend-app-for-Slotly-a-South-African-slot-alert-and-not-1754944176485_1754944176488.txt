@@ -1,0 +1,115 @@
+Build a modern, responsive React.js frontend app for **Slotly** — a South African slot alert and notification service that helps users monitor and book driving license test slots at South African DTLC centers.
+
+---
+
+### Requirements:
+
+1. Use React functional components with hooks.
+2. Use React Router v6 for client-side routing.
+3. Use Tailwind CSS for styling (no plain CSS).
+4. Mobile-first, fully responsive design with a modern AI-tech look and feel using blues, purples, white, and clean UI elements.
+5. Make it explicitly clear on the landing page that Slotly is a **South African** service focused on DTLC driving license test slot alerts and notifications.
+
+---
+
+### Pages & Components:
+
+**Landing Page**:
+- Hero section with a catchy headline, subheadline explaining Slotly is a South African DTLC slot alert & notification service, and a big “Get Started” button linking to Register page.
+- Features section describing:
+  - Instant notification alerts for preferred DTLC centers.
+  - Personalized preferred center monitoring.
+  - Learning resources and driving test tips.
+  - Referral option connecting individuals with driving schools.
+- Pricing Plans section with three tiers:
+  - **Individual (One-time):** R99 for 1 notification alert — intended for personal, one-time slot alert use.
+  - **Driving Schools (Subscription Basic):** R250/month — limited preferred centers monitored, limited number of alerts.
+  - **Driving Schools (Subscription Premium):** R350/month — unlimited preferred centers, unlimited alerts, referral for individuals, advertising signup option.
+- Live counter showing the total **number of notifications sent** by Slotly — data fetched from backend API endpoint `/api/notifications/sent-count` and updating live every 30 seconds.
+- Testimonials carousel featuring quotes from South African users.
+- Footer with South African contact details, social media links, privacy policy, and terms of service.
+
+**Authentication**:
+- Register and Login pages with proper form validation.
+- Password reset placeholder page.
+- JWT-based authentication connecting to backend API.
+
+**Dashboard (Protected Route)**:
+- User profile overview.
+- List and management of preferred DTLC centers.
+- Recent notification alerts with timestamps and center names.
+- For driving schools: display subscription plan details, referral program information, and advertisement signup form placeholder.
+
+**Manage Centers Page**:
+- Display user’s current preferred centers.
+- Ability to add or remove centers via a searchable dropdown.
+- Show real-time slot availability per center (fetched from backend).
+- Connect to backend API endpoints.
+
+**Subscription Page (for Driving Schools)**:
+- Display current subscription plan.
+- Allow upgrading or downgrading subscription.
+- Provide an interface for advertising signup.
+
+---
+
+### Additional Features:
+
+- Responsive Navbar with links to Home, Dashboard, Login/Register, with a hamburger menu on mobile.
+- Reusable Alert component for displaying success and error messages.
+- Smooth animations on buttons, modals, and testimonial carousel.
+- SEO optimization on landing page using react-helmet.
+- Use Axios for all API calls, including loading and error handling states.
+- State management via React Context or hooks for authentication and user data.
+- Include unit tests for critical components like LandingPage, LoginForm, PricingPlans.
+
+---
+
+### Code Files and Structure:
+
+Generate these files with well-structured, modular, and clean code:
+
+- `src/index.js`
+- `src/App.js`
+- `src/components/Navbar.js`
+- `src/components/Footer.js`
+- `src/components/Hero.js`
+- `src/components/Features.js`
+- `src/components/PricingPlans.js`
+- `src/components/Testimonials.js`
+- `src/components/SlotCounter.js`  <-- Live notifications sent counter component
+- `src/components/Alert.js`
+- `src/components/LoginForm.js`
+- `src/components/RegisterForm.js`
+- `src/components/NotificationAlertList.js`  (list of recent alerts)
+- `src/pages/LandingPage.js`
+- `src/pages/LoginPage.js`
+- `src/pages/RegisterPage.js`
+- `src/pages/DashboardPage.js`
+- `src/pages/ManageCentersPage.js`
+- `src/pages/SubscriptionPage.js`
+- `src/services/api.js` (Axios instance and API functions)
+- `tailwind.config.js`
+- `postcss.config.js`
+- `package.json` including:
+  - react, react-dom, react-router-dom, axios, tailwindcss, autoprefixer, postcss, react-helmet, jest, @testing-library/react, @testing-library/jest-dom
+
+---
+
+### Extra Notes:
+
+- Include a clear README.md with setup instructions for running on Replit.
+- Tailwind CSS must be properly integrated and configured.
+- Make the pricing and South African branding very prominent throughout the UI.
+- The notifications sent counter should call backend API `/api/notifications/sent-count` every 30 seconds and update automatically.
+- Ensure all code is well-commented and easy to maintain.
+- UI should feel friendly, trustworthy, and professional, targeting South African learners and driving schools.
+- Accessibility best practices should be considered.
+
+---
+
+This prompt should help generate a full React + Tailwind frontend app tailored exactly to your Slotly business with South African focus, pricing tiers, and a live notifications counter.
+
+---
+
+Would you like me to generate a starter file next (like `src/App.js` or `LandingPage.js`) or help with backend API ideas?

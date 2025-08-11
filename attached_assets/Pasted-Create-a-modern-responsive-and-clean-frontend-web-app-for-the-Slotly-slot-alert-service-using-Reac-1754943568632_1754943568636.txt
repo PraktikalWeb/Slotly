@@ -1,0 +1,72 @@
+Create a modern, responsive, and clean frontend web app for the Slotly slot alert service using React.js and Tailwind CSS. The app should work seamlessly on desktop and mobile devices.
+
+### Key pages/components:
+
+1. **Landing Page (Home)**
+- Hero section with a catchy headline, short description, and a prominent "Get Started" call-to-action button.
+- Features section highlighting key benefits: instant slot alerts, easy booking, referrals, learning resources.
+- Testimonials slider/carousel with user quotes and photos.
+- Footer with links (About, Contact, Privacy Policy, Social media icons).
+
+2. **User Authentication**
+- Register and login pages with form validation and user-friendly error messages.
+- Forgot password flow (basic UI placeholder).
+- Use JWT token-based authentication to connect with the backend.
+
+3. **Dashboard**
+- Shows user profile info and preferred DLTC centers.
+- Slot alerts feed: shows recent alerts with date/time and center name.
+- Button/link to update preferred DLTC centers.
+- For driving schools, show subscription status and referral links.
+
+4. **DLTC Center Management**
+- Page/modal where users can add/remove their preferred centers.
+- Display current slot availability fetched from the backend API.
+- Allow driving schools to manage their subscription level (basic/premium) and advertisement signups.
+
+5. **Notifications & Alerts**
+- Real-time or near-real-time alerts about slot availability (polling or websockets).
+- Visual cues (colored badges, icons) to indicate new alerts.
+- Email notification info and settings page.
+
+6. **General UI/UX**
+- Use Tailwind CSS for styling with a consistent color scheme (choose modern tech/AI vibes: blue, purple, white, dark mode optional).
+- Clean typography and spacing.
+- Mobile-first design approach.
+- Smooth animations/transitions for buttons and modals.
+
+7. **Routing**
+- Use React Router for navigation.
+- Protect routes that require authentication.
+
+8. **API Integration**
+- Use Axios or Fetch to connect with the Django backend.
+- Proper error handling and loading states on API calls.
+
+9. **Code Structure**
+- Use functional React components with hooks.
+- Organize components, pages, and services logically.
+- Provide comments explaining main parts.
+
+10. **Extras**
+- Add a reusable Alert component for notifications.
+- Include SEO meta tags for the landing page.
+- Basic unit tests using Jest and React Testing Library for critical components.
+
+---
+
+Please generate:
+
+- `src/App.js` (with routing setup)
+- `src/index.js`
+- `src/components/` (Navbar, Footer, Hero, Testimonials, Alert, SlotList, Profile, LoginForm, RegisterForm)
+- `src/pages/` (LandingPage, Dashboard, Login, Register, ManageCenters, Subscription)
+- `src/services/api.js` (for backend API calls)
+- `tailwind.config.js`
+- `postcss.config.js`
+- `package.json` with all needed dependencies (React, Tailwind, React Router, Axios, Jest)
+- Example CSS using Tailwind classes (no plain CSS files)
+- `README.md` with setup and run instructions
+
+Make sure the UI looks professional, modern, and is easy to navigate for all users.
+
