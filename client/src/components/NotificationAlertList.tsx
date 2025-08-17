@@ -43,7 +43,7 @@ export default function NotificationAlertList() {
     );
   }
 
-  if (!notifications || notifications.length === 0) {
+  if (!Array.isArray(notifications) || notifications.length === 0) {
     return (
       <Card>
         <CardHeader>
@@ -66,16 +66,16 @@ export default function NotificationAlertList() {
   }
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
+      <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-t-lg">
         <CardTitle className="flex items-center">
-          <Bell className="mr-2" size={20} />
+          <Bell className="mr-2 text-blue-600" size={20} />
           Recent Alerts
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-6">
         <div className="space-y-4">
-          {notifications.map((notification: Notification) => (
+          {Array.isArray(notifications) && notifications.map((notification: Notification) => (
             <div
               key={notification.id}
               className={`p-4 rounded-lg border ${
@@ -98,13 +98,13 @@ export default function NotificationAlertList() {
                   <p className="text-slate-700 mb-2">{notification.message}</p>
                   <div className="flex items-center text-sm text-slate-500">
                     <Clock size={14} className="mr-1" />
-                    {new Date(notification.createdAt).toLocaleDateString("en-ZA", {
+                    {notification.createdAt ? new Date(notification.createdAt).toLocaleDateString("en-ZA", {
                       year: "numeric",
                       month: "short",
                       day: "numeric",
                       hour: "2-digit",
                       minute: "2-digit",
-                    })}
+                    }) : 'Just now'}
                   </div>
                 </div>
                 {!notification.read && (

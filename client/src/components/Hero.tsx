@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Rocket, Play, TrendingUp } from "lucide-react";
+import { Rocket, TrendingUp, Bell } from "lucide-react";
 import { Link } from "wouter";
 import SlotCounter from "./SlotCounter";
 
@@ -26,21 +26,13 @@ export default function Hero() {
             <p className="mt-6 text-xl text-slate-600 max-w-3xl">
               Get instant notifications when driving license test slots become available at your preferred South African DTLC centers. Monitor multiple locations and book faster than ever before.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className="mt-8">
               <Link href="/register">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-8 py-4 text-lg">
                   <Rocket className="mr-2" size={20} />
                   Get Started Today
                 </Button>
               </Link>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-2 border-slate-200 hover:border-blue-300 transition-all duration-300"
-              >
-                <Play className="mr-2" size={20} />
-                Watch Demo
-              </Button>
             </div>
 
             {/* Live Counter */}
@@ -71,25 +63,34 @@ export default function Hero() {
           {/* Right Content - Hero Image */}
           <div className="mt-12 lg:mt-0 lg:col-span-6">
             <div className="relative">
-              {/* Modern dashboard mockup showcasing Slotly interface */}
+              {/* Modern South African driving scene */}
               <img
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-                alt="Modern tech interface showing Slotly dashboard"
+                src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+                alt="Modern South African driving scene with DTLC center"
                 className="w-full rounded-2xl shadow-2xl"
               />
 
               {/* Floating notification cards */}
-              <div className="absolute -top-4 -left-4 bg-white rounded-lg shadow-lg p-3 animate-bounce-gentle">
+              <div className="absolute -top-4 -left-4 bg-white rounded-lg shadow-lg p-4 animate-bounce-gentle border border-green-200">
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
-                  <span className="text-xs font-medium text-slate-700">Centurion DTLC - New Slot!</span>
+                  <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-slate-700">Centurion DTLC</span>
                 </div>
+                <p className="text-xs text-emerald-600 font-semibold">Slot Available Now!</p>
               </div>
 
-              <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-3 animate-bounce-gentle" style={{ animationDelay: "1s" }}>
+              <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-4 animate-bounce-gentle border border-blue-200" style={{ animationDelay: "1s" }}>
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                  <span className="text-xs font-medium text-slate-700">Sandton DTLC - Available</span>
+                  <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-slate-700">Sandton DTLC</span>
+                </div>
+                <p className="text-xs text-blue-600 font-semibold">2 Slots Open</p>
+              </div>
+
+              <div className="absolute top-1/2 -left-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg shadow-lg p-3 animate-bounce-gentle" style={{ animationDelay: "2s" }}>
+                <div className="flex items-center space-x-2">
+                  <Bell size={14} className="animate-pulse" />
+                  <span className="text-xs font-semibold">Live Alerts</span>
                 </div>
               </div>
             </div>
