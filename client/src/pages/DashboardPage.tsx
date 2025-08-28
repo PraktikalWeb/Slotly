@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/Navbar";
 import NotificationAlertList from "@/components/NotificationAlertList";
+import NotificationSettings from "@/components/NotificationSettings";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -61,7 +62,7 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* User Profile Overview */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 space-y-6">
             <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
               <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-t-lg">
                 <CardTitle className="flex items-center">
@@ -96,6 +97,9 @@ export default function DashboardPage() {
                 )}
               </CardContent>
             </Card>
+            
+            {/* Notification Settings */}
+            <NotificationSettings />
 
             {/* Preferred Centers Summary */}
             <Card className="mt-6 shadow-lg border-0 bg-white/70 backdrop-blur-sm">

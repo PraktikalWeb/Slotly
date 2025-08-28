@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Rocket, TrendingUp, Bell } from "lucide-react";
 import { Link } from "wouter";
 import SlotCounter from "./SlotCounter";
+import calendarImage from "@assets/generated_images/Calendar_booking_slots_illustration_9c863175.png";
 
 export default function Hero() {
   return (
@@ -11,11 +12,6 @@ export default function Hero() {
         <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left animate-slide-up">
-            <div className="mb-4">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-700">
-                🇿🇦 South African Service
-              </span>
-            </div>
             <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl lg:text-6xl">
               Never Miss a{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
@@ -63,10 +59,10 @@ export default function Hero() {
           {/* Right Content - Hero Image */}
           <div className="mt-12 lg:mt-0 lg:col-span-6">
             <div className="relative">
-              {/* Modern South African driving scene */}
+              {/* Calendar booking illustration */}
               <img
-                src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-                alt="Modern South African driving scene with DTLC center"
+                src={calendarImage}
+                alt="Calendar showing available DTLC booking slots with notification highlights"
                 className="w-full rounded-2xl shadow-2xl"
               />
 
@@ -74,7 +70,7 @@ export default function Hero() {
               <div className="absolute -top-4 -left-4 bg-white rounded-lg shadow-lg p-4 animate-bounce-gentle border border-green-200">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-slate-700">Centurion DTLC</span>
+                  <span className="text-sm font-medium text-slate-700">Benoni DTLC</span>
                 </div>
                 <p className="text-xs text-emerald-600 font-semibold">Slot Available Now!</p>
               </div>
@@ -82,7 +78,7 @@ export default function Hero() {
               <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-4 animate-bounce-gentle border border-blue-200" style={{ animationDelay: "1s" }}>
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-slate-700">Sandton DTLC</span>
+                  <span className="text-sm font-medium text-slate-700">Springs DTLC</span>
                 </div>
                 <p className="text-xs text-blue-600 font-semibold">2 Slots Open</p>
               </div>
