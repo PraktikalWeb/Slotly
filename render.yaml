@@ -4,8 +4,8 @@ services:
     env: node
     region: oregon
     plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm start
+    buildCommand: npm install && npm run server:build
+    startCommand: SERVE_STATIC=false npm run server:start
     autoDeploy: true
     healthCheckPath: /api/centers
     envVars:
@@ -15,3 +15,5 @@ services:
         value: 20
       - key: CORS_ORIGIN
         value: https://your-frontend-domain.vercel.app
+      - key: SERVE_STATIC
+        value: "false"

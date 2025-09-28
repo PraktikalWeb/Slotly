@@ -2,9 +2,8 @@ import express, { type Request, type Response, type NextFunction } from "express
 // Use require form to satisfy type resolution in ESM/bundler mode
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const cors: typeof import("cors") = require("cors");
-import type { CorsOptions } from "cors";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { serveStatic, log } from "./static";
 
 const app = express();
 app.use(express.json());
@@ -16,7 +15,7 @@ const allowedOrigins = (process.env.CORS_ORIGIN || "")
   .map((o: string) => o.trim())
   .filter(Boolean);
 
-const corsOptions: CorsOptions = {
+const corsOptions: any = {
   origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
     if (!origin) return callback(null, true);
     if (allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
@@ -31,7 +30,7 @@ app.use(cors(corsOptions));
 // Preflight for all routes with same options
 app.options("*", cors(corsOptions));
 
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   const start = Date.now();
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
@@ -75,9 +74,11 @@ app.use((req, res, next) => {
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
+  const shouldServeStatic = (process.env.SERVE_STATIC || "true").toLowerCase() !== "false";
   if (app.get("env") === "development") {
+    const { setupVite } = await import("./vite");
     await setupVite(app, server);
-  } else {
+  } else if (shouldServeStatic) {
     serveStatic(app);
   }
 
