@@ -7,12 +7,29 @@ async function throwIfResNotOk(res: Response) {
   }
 }
 
+function resolveApiUrl(pathOrUrl: string): string {
+  // If already absolute HTTP(S) URL, return as-is
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+
+  // Only prefix relative paths starting with '/'
+  if (pathOrUrl.startsWith("/")) {
+    const base = (import.meta as any).env?.VITE_API_URL as string | undefined;
+    if (base && typeof base === "string" && base.length > 0) {
+      const sanitizedBase = base.replace(/\/$/, "");
+      return `${sanitizedBase}${pathOrUrl}`;
+    }
+  }
+
+  return pathOrUrl;
+}
+
 export async function apiRequest(
   method: string,
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const res = await fetch(url, {
+  const resolvedUrl = resolveApiUrl(url);
+  const res = await fetch(resolvedUrl, {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
     body: data ? JSON.stringify(data) : undefined,
@@ -28,8 +45,10 @@ export const getQueryFn: <T>(options: {
   on401: UnauthorizedBehavior;
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
-  async ({ queryKey }) => {
-    const res = await fetch(queryKey.join("/") as string, {
+  async ({ queryKey }: { queryKey: readonly unknown[] }) => {
+    const path = queryKey.join("/") as string;
+    const resolvedUrl = resolveApiUrl(path.startsWith("/") ? path : `/${path}`);
+    const res = await fetch(resolvedUrl, {
       credentials: "include",
     });
 

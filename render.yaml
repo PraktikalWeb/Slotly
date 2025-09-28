@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: slotly-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    autoDeploy: true
+    healthCheckPath: /api/centers
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20
+      - key: CORS_ORIGIN
+        value: https://your-frontend-domain.vercel.app
