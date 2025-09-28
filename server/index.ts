@@ -1,4 +1,8 @@
-import express, { type Request, Response, NextFunction } from "express";
+import express, { type Request, type Response, type NextFunction } from "express";
+// Use require form to satisfy type resolution in ESM/bundler mode
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cors: typeof import("cors") = require("cors");
+import type { CorsOptions } from "cors";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
@@ -6,16 +10,37 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// CORS configuration for separate frontend (Vercel) and backend (Render)
+const allowedOrigins = (process.env.CORS_ORIGIN || "")
+  .split(",")
+  .map((o: string) => o.trim())
+  .filter(Boolean);
+
+const corsOptions: CorsOptions = {
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+// Preflight for all routes with same options
+app.options("*", cors(corsOptions));
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
 
-  const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
+  const originalResJson = res.json.bind(res) as (body?: any) => Response;
+  res.json = function (bodyJson: any): Response {
     capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
-  };
+    return originalResJson(bodyJson);
+  } as typeof res.json;
 
   res.on("finish", () => {
     const duration = Date.now() - start;
